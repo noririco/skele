@@ -54,11 +54,11 @@
 
 `npm install --save-dev start-server-and-test`
 
-    ```
-    Now that our tests run locally, let's kick of a small CI (continuous integration) pipeline. A good way to prepare for this, is to create npm scripts and combine them so that the build system can use a single script as entry point. By following this method, you can try the CI steps locally before pushing online. Moreover npm scripts are rather independent from any actual build system.
+```
+Now that our tests run locally, let's kick of a small CI (continuous integration) pipeline. A good way to prepare for this, is to create npm scripts and combine them so that the build system can use a single script as entry point. By following this method, you can try the CI steps locally before pushing online. Moreover npm scripts are rather independent from any actual build system.
 
-    On CI, we need to start our server in the background and wait for it to bundle our application, which might take a while. Then we need to start the Cypress test runner, go through the tests and shut down the server when the tests finish. Luckily we can do this all with a single utility called start-server-and-test as described in the Cypress docs:
-    ```
+On CI, we need to start our server in the background and wait for it to bundle our application, which might take a while. Then we need to start the Cypress test runner, go through the tests and shut down the server when the tests finish. Luckily we can do this all with a single utility called start-server-and-test as described in the Cypress docs:
+```
 
 ---
 
