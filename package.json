@@ -2,12 +2,16 @@
   "name": "skele",
   "version": "0.0.0",
   "scripts": {
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "e2e:ci": "ng e2e --configuration=ci",
+    "ci": "start-server-and-test start http://localhost:4200 cy:run"
   },
   "private": true,
   "dependencies": {
@@ -27,9 +31,12 @@
     "@angular-devkit/build-angular": "~0.1102.6",
     "@angular/cli": "~11.2.6",
     "@angular/compiler-cli": "~11.2.7",
+    "@briebug/cypress-schematic": "^4.4.0",
+    "@cypress/webpack-preprocessor": "5.6.0",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
+    "cypress": "^6.8.0",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~6.1.0",
@@ -37,7 +44,9 @@
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
-    "protractor": "~7.0.0",
+    "npm-run-all": "^4.1.5",
+    "start-server-and-test": "^1.12.1",
+    "ts-loader": "8.1.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "~4.1.5"

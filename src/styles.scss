@@ -1,1 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+@import "normalize";
+@import "variables";
+
+html {
+  //   color: rgba(var(--clr-p), 0.5);
+}

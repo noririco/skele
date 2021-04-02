@@ -1,27 +1,93 @@
-# Skele
+### Development Utils
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.6.
+`npm i -D npm-run-all`
 
-## Development server
+- allows to run npm scripts in sequnce or parallel
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+`npm i -D rimraf`
+`npm i -D replace-in-file`
+`npm i -D wait-on `
 
-## Code scaffolding
+---
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Testing libs and packages
 
-## Build
+`npm i -D cypress`
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+`npm i -D @briebug/cypress-schematic`
 
-## Running unit tests
+`ng add @briebug/cypress-schematic`
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- removes default protactor integration from Angular
 
-## Running end-to-end tests
+`angular.json`
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+```typescript
+"e2e": {
+    "builder": "@briebug/cypress-schematic:cypress",
+    "options": {
+        "devServerTarget": "skele:serve",
+        "watch": true,
+        "headless": false
+    },
+    "configurations": {
+        "production": {
+            "devServerTarget": "skele:serve:production"
+        },
+        "ci": {
+            "devServerTarget": "skele:serve",
+            "browser": "chrome",
+            "headless": true,
+            "watch": false
+        }
+    }
+}
+```
 
-## Further help
+`package.json`
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```json
+"scripts": {
+    "e2e:ci": "ng e2e --configuration=ci"
+}
+```
+
+`npm install --save-dev start-server-and-test`
+
+    ```
+    Now that our tests run locally, let's kick of a small CI (continuous integration) pipeline. A good way to prepare for this, is to create npm scripts and combine them so that the build system can use a single script as entry point. By following this method, you can try the CI steps locally before pushing online. Moreover npm scripts are rather independent from any actual build system.
+
+    On CI, we need to start our server in the background and wait for it to bundle our application, which might take a while. Then we need to start the Cypress test runner, go through the tests and shut down the server when the tests finish. Luckily we can do this all with a single utility called start-server-and-test as described in the Cypress docs:
+    ```
+
+---
+
+### SCSS
+
+`angular.json`
+
+```json
+"architect": {
+    "build": {
+        "builder": "@angular-devkit/build-angular:browser",
+        "options": {
+        "outputPath": "dist/skele",
+        "index": "src/index.html",
+        "main": "src/main.ts",
+        "polyfills": "src/polyfills.ts",
+        "tsConfig": "tsconfig.app.json",
+        "aot": true,
+        "assets": ["src/favicon.ico", "src/assets"],
+        "styles": ["src/styles.scss"],
+        "scripts": [],
+        //Add This to allow @import "filename"
+        "stylePreprocessorOptions": {
+            "includePaths": ["./src/scss"]
+        }
+    }
+}
+```
+
+Use Normalize convention
+
+https://ageek.dev/normalize-css
