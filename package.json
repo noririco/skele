@@ -11,7 +11,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "e2e:ci": "ng e2e --configuration=ci",
-    "ci": "start-server-and-test start http://localhost:4200 cy:run"
+    "ci": "start-server-and-test start 'http-get://localhost:4200' cy:run"
   },
   "private": true,
   "dependencies": {
